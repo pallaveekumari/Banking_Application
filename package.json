@@ -1,0 +1,20 @@
+{
+  "name": "kelpGlobal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pallaveekumari/Banking_Application.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pallaveekumari/Banking_Application/issues"
+  },
+  "homepage": "https://github.com/pallaveekumari/Banking_Application#readme"
+}
