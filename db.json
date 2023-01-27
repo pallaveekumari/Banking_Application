@@ -1,6 +1,1 @@
-{
-  "User_Details": [
-    { "AccountNumber": "ACC002", "Balance": 0, "Name": "Rahul" },
-    { "AccountNumber": "ACC001", "Balance": 0, "Name": "Rahul" }
-  ]
-}
+{"User_Details":[{"AccountNumber":"ACC002","Balance":12000,"Name":"Rahul"},{"AccountNumber":"ACC001","Balance":0,"Name":"Rahul"}]}
