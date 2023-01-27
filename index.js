@@ -5,7 +5,7 @@ const fs = require("fs");
 if (process.argv[2] == "CREATE") {
   let data = JSON.parse(fs.readFileSync("./db.json", "utf-8"));
   let users = data.User_Details;
-   for (let i = 0; i < users.length; i++) {
+  for (let i = 0; i < users.length; i++) {
     if (users[i]["AccountNumber"] == process.argv[3]) {
       return console.log("UserAccount already Exist!");
     }
@@ -20,12 +20,14 @@ if (process.argv[2] == "CREATE") {
   data.User_Details = newData;
   let finalData = JSON.stringify(data);
   fs.writeFileSync("./db.json", finalData, "utf-8");
-} else if (process.argv[2] == "DEPOSIT") {
-  /* TO CREATE ACCOUNT ----END----*/
+} 
+/* TO CREATE ACCOUNT ----END----*/
 
-  /* TO DEPOSIT BALANCE IN ACCOUNT ----START----*/
-  if (process.argv[4] < 0) {
-    return console.log("Not A valid Amount To be Deposited!");
+/* TO DEPOSIT BALANCE IN ACCOUNT ----START----*/
+else if (process.argv[2] == "DEPOSIT") {
+
+  if (process.argv[4] <= 0) {
+    return console.log("Not A valid Amount For Depositing!");
   }
 
   const data = JSON.parse(fs.readFileSync("./db.json", "utf-8"));
@@ -43,10 +45,14 @@ if (process.argv[2] == "CREATE") {
   data.User_Details = newData;
   const final = JSON.stringify(data);
   fs.writeFileSync("./db.json", final, "utf-8");
-} else if (process.argv[2] == "WITHDRAW") {
-  /* TO DEPOSIT BALANCE IN ACCOUNT ----END----*/
+} 
 
-  /* TO WITHDRAW BALANCE FROM ACCOUNT ----START----*/
+/* TO DEPOSIT BALANCE IN ACCOUNT ----END----*/
+
+
+/* TO WITHDRAW BALANCE FROM ACCOUNT ----START----*/
+else if (process.argv[2] == "WITHDRAW") {
+
   if (process.argv[4] < 0) {
     return console.log("The Balance for withdrawal is Incorrect!");
   }
@@ -57,11 +63,20 @@ if (process.argv[2] == "CREATE") {
 
   const data = JSON.parse(fs.readFileSync("./db.json", "utf-8"));
   let users = data.User_Details;
-
+for(let i=0;i<users.length;i++)
+{
+    if(process.argv[3]==users[i]["AccountNumber"])
+    {
+         if(users[i]["Balance"]<Number(process.argv[4]))
+         {
+            return console.log("Insufficient Balance!")
+         }
+    }
+}
   let newData = users.map((el) => {
     if (
       el["AccountNumber"] == process.argv[3] &&
-      process.argv[4] <= el.Balance
+      process.argv[4] <= el["Balance"]
     ) {
       return { ...el, Balance: el.Balance - Number(process.argv[4]) };
     } else {
@@ -72,15 +87,18 @@ if (process.argv[2] == "CREATE") {
   data.User_Details = newData;
   const final = JSON.stringify(data);
   fs.writeFileSync("./db.json", final, "utf-8");
-} else if (process.argv[2] == "BALANCE") {
-  /* TO WITHDRAW BALANCE FROM ACCOUNT ----END----*/
+} 
+/* TO WITHDRAW BALANCE FROM ACCOUNT ----END----*/
 
-  /* TO CHECK BALANCE IN OUR ACCOUNT ----START----*/
+
+/* TO CHECK BALANCE IN OUR ACCOUNT ----START----*/
+else if (process.argv[2] == "BALANCE") {
+
   const data = JSON.parse(fs.readFileSync("./db.json", "utf-8"));
   let users = data.User_Details;
   let newData = users.map((el) => {
     if (el.AccountNumber == process.argv[3]) {
-      return console.log(el.Name, el.Balance);
+      return console.log(el.Balance,el.AccountNumber);
     } else {
       return el;
     }
